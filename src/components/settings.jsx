@@ -9,23 +9,6 @@ export default class Settings extends Component {
       language: 'English'
     }
     this.banners = {
-      'ballad-in-goblets': 'Ballad In Goblets',
-      'sparkling-steps': 'Sparkling Steps',
-      'gentry-of-hermitage': 'Gentry Of Hermitage',
-      'farewell-of-snezhnaya': 'Farewell of Snezhnaya',
-      'secretum-secretorum': 'Secretum Secretorum',
-      'adrift-in-the-harbor': 'Adrift in the Harbor',
-      'invitation-to-mundane-life': 'Invitation to Mundane Life',
-      'dance-of-lanterns': 'Dance Of Lanterns',
-      'moment-of-bloom': 'Moment Of Bloom',
-      'ballad-in-goblets-2': 'Ballad in Goblets 2',
-      'farewell-of-snezhnaya-2': 'Farewell of Snezhnaya 2',
-      'gentry-of-hermitage-2': 'Gentry of Hermitage 2',
-      'born-of-ocean-swell': 'Born of Ocean Swell',
-      'sparkling-steps-2': 'Sparkling Steps 2',
-      'leaves-in-the-wind': 'Leaves in the Wind',
-      'the-herons-court': 'The Herons Court',
-      'tapestry-of-golden-flames': 'Tapestry of Golden Flames',
       'reign-of-serenity': 'Reign of Serenity',
     }
     this.onChange = this.onChange.bind(this)
