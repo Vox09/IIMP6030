@@ -104,11 +104,11 @@ video {
   cursor: url('../assets/images/ui/cursor.png'), auto;
 }
 
-.banner-button.reign-of-serenity {
+.banner-button.lg1 {
   background-image: url('../assets/images/ui/lg1.png');
 }
 
-.banner-button.reign-of-serenity.selected {
+.banner-button.lg1.selected {
   background-image: url('../assets/images/ui/lg1-selected.png');
 }
 
@@ -120,11 +120,11 @@ video {
   background-image: url('../assets/images/ui/lg7-selected.png');
 }
 
-.banner-button.wanderlust-invocation {
+.banner-button.out-campus {
   background-image: url('../assets/images/ui/out.png');
 }
 
-.banner-button.wanderlust-invocation.selected {
+.banner-button.out-campus.selected {
   background-image: url('../assets/images/ui/out-selected.png');
 }
 

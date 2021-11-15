@@ -3,12 +3,12 @@ import { Container, Row, Col } from 'reactstrap';
 import StarsBar from './details-components/stars-bar';
 import SubheadingSeparator from './details-components/subheading-separator';
 import EventDurationHeading from './details-components/event-duration-heading'
-import WanderlustInvocation from '../models/wanderlust-invocation'
+import OutCampus from '../models/out-campus'
 import Table from './details-components/table'
 import Title from './details-components/title'
 
-export default function WanderlustInvocationDetails() {
-  const wanderlust = new WanderlustInvocation()
+export default function OutCampusDetails() {
+  const wanderlust = new OutCampus()
   return (
     <div className="details pt-5">
       <Container>

@@ -5,9 +5,9 @@ import Wish from './wish'
 import WishResults from './wish-results'
 import Inventory from './inventory'
 
-import ReignOfSerenity from '../models/reign-of-serenity'
+import LG1 from '../models/lg1'
 import LG7 from '../models/lg7'
-import WanderlustInvocation from '../models/wanderlust-invocation'
+import OutCampus from '../models/out-campus'
 import { version } from '../../package.json';
 
 
@@ -15,22 +15,22 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.setView = this.setView.bind(this)
+    this.lg1 = new LG1()
     this.lg7 = new LG7()
-    this.wanderlustInvocation = new WanderlustInvocation()
-    this.reignOfSerenity = new ReignOfSerenity()
+    this.outCampus = new OutCampus()
     this.state = {
       view: 'banners',
-      currentDetails: 'reign-of-serenity',
-      selectedWish: 'wanderlust-invocation',
+      currentDetails: 'lg1',
+      selectedWish: 'out-campus',
       inventory: {},
       wasDisclaimerSeen: false,
       isSettingsPageVisible: false,
       currentWishes: [],
-      selectedCharacterEventWish: 'reign-of-serenity',
+      selectedCharacterEventWish: 'lg1',
       userWishes: {
-        'wanderlust-invocation': 0,
+        'out-campus': 0,
         'lg7': 0,
-        'reign-of-serenity': 0,
+        'lg1': 0,
       }
     }
   }
@@ -115,16 +115,16 @@ export default class App extends Component {
   syncWishCountersWithState() {
     this.setState({
       userWishes: {
-        'wanderlust-invocation': this.wanderlustInvocation.getState().attemptsCount,
+        'out-campus': this.outCampus.getState().attemptsCount,
         'lg7': this.lg7.getState().attemptsCount,
-        'reign-of-serenity': this.reignOfSerenity.getState().attemptsCount,
+        'lg1': this.lg1.getState().attemptsCount,
       }
     })
   }
   reset(previouslySelectedWish) {
-    this.wanderlustInvocation.reset()
+    this.outCampus.reset()
     this.lg7.reset()
-    this.reignOfSerenity.reset()
+    this.lg1.reset()
     this.setState({
       selectedWish: previouslySelectedWish,
       inventory: {}
@@ -139,9 +139,9 @@ export default class App extends Component {
       version: 1,
       inventory,
       selectedCharacterEventWish,
-      wanderlustInvocation: this.wanderlustInvocation.getState(),
+      outCampus: this.outCampus.getState(),
       lg7: this.lg7.getState(),
-      reignOfSerenity: this.reignOfSerenity.getState(),
+      lg1: this.lg1.getState(),
     }
     localStorage.setItem('data', JSON.stringify(data))
     this.syncWishCountersWithState()
@@ -154,9 +154,9 @@ export default class App extends Component {
       const {
         inventory
       } = data
-      this.wanderlustInvocation.attemptsCount = data.wanderlustInvocationCount || 0
+      this.outCampus.attemptsCount = data.outCampus || 0
       this.lg7.attemptsCount = data.lg7 || 0
-      this.reignOfSerenity.attemptsCount = data.reignOfSerenity || 0
+      this.lg1.attemptsCount = data.lg1 || 0
       this.setState({
         inventory
       }, this.backToHome)
@@ -166,9 +166,9 @@ export default class App extends Component {
         inventory,
         selectedCharacterEventWish
       } = data
-      this.wanderlustInvocation.setState(data.wanderlustInvocation);
+      this.outCampus.setState(data.outCampus);
       this.lg7.setState(data.lg7);
-      this.reignOfSerenity.setState(data.reignOfSerenity)
+      this.lg1.setState(data.lg1)
       this.setState({
         inventory,
         selectedCharacterEventWish

@@ -9,7 +9,8 @@ export default class Settings extends Component {
       language: 'English'
     }
     this.banners = {
-      'reign-of-serenity': 'Reign of Serenity',
+      'lg1': 'LG1',
+      'lg7': 'LG7',
     }
     this.onChange = this.onChange.bind(this)
   }
@@ -66,7 +67,7 @@ export default class Settings extends Component {
                 <Row>
                   <Col xs="12">
                     <FormGroup className="text-left">
-                      <Label for="characterBanner" className="pb-1 pl-1 h5">Character Banner</Label>
+                      <Label for="characterBanner" className="pb-1 pl-1 h5">Choose restaurant</Label>
                       <Input
                         type="select"
                         name="characterBanner"

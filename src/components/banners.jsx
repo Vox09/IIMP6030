@@ -13,14 +13,12 @@ export default class Banners extends Component {
       selectedBanner: 'lg7',
       selectedCharacterEventWish,
       banners: {
-        [selectedCharacterEventWish]: 'LG1 Food Gacha',
-        'lg7': 'LG7 Food Gacha',
-        'wanderlust-invocation': 'McDonald\'s Food Gacha'
+        [selectedCharacterEventWish]: 'In-Campus Food Gacha',
+        'out-campus': 'Out-Campus Food Gacha'
       },
       wishes: {
         [selectedCharacterEventWish]: this.props.getFormattedCharacterEventWish('camelCase', selectedCharacterEventWish),
-        'lg7': 'lg7',
-        'wanderlust-invocation': 'wanderlustInvocation'
+        'out-campus': 'outCampus'
       },
       isSettingsPageVisible: false
     }
@@ -39,7 +37,7 @@ export default class Banners extends Component {
       const wishes = {}
       for(const b in oldBanners) {
         if(selectedCharacterEventWish === b) {
-          banners[newSelectedCharacterEventWish] = 'Character Event Wish'
+          banners[newSelectedCharacterEventWish] = 'In-Campus Food Gacha'
         } else {
           banners[b] = oldBanners[b]
         }

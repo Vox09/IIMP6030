@@ -1,7 +1,7 @@
 import BaseGacha from './base-gacha'
-import drops from '../data/wanderlust-invocation.json'
+import drops from '../data/out-campus.json'
 
-export default class WanderlustInvocation extends BaseGacha {
+export default class OutCampus extends BaseGacha {
   constructor() {
     super(drops)
   }

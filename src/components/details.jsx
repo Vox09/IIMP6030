@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import ReignOfSerenityDetails from './reign-of-serenity-details'
+import LG1Details from './lg1-details'
 import LG7Details from './lg7-details'
 import Navbar from './details-components/navbar'
-import WanderlustInvocationDetails from './wanderlust-invocation-details'
+import OutCampusDetails from './out-campus-details'
 
 export default function Details(props) {
   const { selectedDetail, backToHome } = props
   const pages = {
-    'reign-of-serenity': <ReignOfSerenityDetails />,
+    'lg1': <LG1Details />,
     'lg7': <LG7Details/>,
-    'wanderlust-invocation': <WanderlustInvocationDetails/>,
+    'out-campus': <OutCampusDetails/>,
   }
   return (
     <>

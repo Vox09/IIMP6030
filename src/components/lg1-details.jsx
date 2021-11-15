@@ -4,12 +4,12 @@ import DetailsBox from "./details-components/details-box";
 import StarsBar from "./details-components/stars-bar";
 import SubheadingSeparator from "./details-components/subheading-separator";
 import EventDurationHeading from "./details-components/event-duration-heading";
-import ReignOfSerenity from "../models/reign-of-serenity";
+import LG1 from "../models/lg1";
 import Table from "./details-components/table";
 import Title from "./details-components/title";
 
-export default function ReignOfSerenityDetails() {
-  const reign = new ReignOfSerenity();
+export default function LG1Details() {
+  const reign = new LG1();
   return (
     <div className="details pt-5">
       <Container>
