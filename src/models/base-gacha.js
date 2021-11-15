@@ -1,16 +1,17 @@
 export default class BaseGacha {
   constructor(drops) {
     this.drops = drops
-    this.hardPity5Limit = 90
-    this.softPity5Start = 75
+    this.hardPity4Limit = 5
+    this.hardPity5Limit = 20
+    this.softPity5Start = 15
     this.attemptsCount = 0
     this.pityCounter4 = 0
     this.pityCounter5 = 0
     this.softPity = false
     this.guaranteedFeatured4Star = false
     this.guaranteedFeatured5Star = false
-    this.standardRange = this.generateProbabilityRange(943, 51, 6)
-    this.softPityRange = this.generateProbabilityRange(629, 51, 320)
+    this.standardRange = this.generateProbabilityRange(400, 300, 300)   // sum to 1000
+    this.softPityRange = this.generateProbabilityRange(300, 450, 250)   // sum to 1000
     this.probabilityRange = this.standardRange
   }
   set attempts(amount) {
@@ -73,7 +74,8 @@ export default class BaseGacha {
     const isFeatured4StarCharacter = this.flipACoin()
     if (isFeatured4StarCharacter || this.guaranteedFeatured4Star) {
       this.guaranteedFeatured4Star = false
-      return this.getItem(4,true)
+      // return this.getItem(4,true)
+      return this.getItem(4,undefined)
     } else {
       this.guaranteedFeatured4Star = true
       return this.getItem(4,undefined)
@@ -86,7 +88,7 @@ export default class BaseGacha {
       result = items.filter(item => item.isFeatured === true)
     } else if (rating === 4) {
       const coinFlip = this.flipACoin()
-      const itemType = coinFlip ? 'character' : 'weapon'
+      const itemType = 'weapon'
       result = items.filter(item => item.type === itemType && !item.isFeatured)
     } else {
       result = items.filter(item => !item.isFeatured)
@@ -107,18 +109,13 @@ export default class BaseGacha {
     const isFeatured5Star = this.flipACoin()
     if (this.guaranteedFeatured5Star || isFeatured5Star) {
       this.guaranteedFeatured5Star = false
-      return this.getItem(5,true)
+      // return this.getItem(5,true)
+      return this.getItem(5,undefined)
     }
     this.guaranteedFeatured5Star = true
     return this.getItem(5,undefined)
   }
-  roll() {
-    const roll = []
-    for (let i = 0; i < 10; i++) {
-      roll.push(this.rollOnce());
-    }
-    return roll
-  }
+
   beforeRollOnce() {
   }
   rollOnce() {

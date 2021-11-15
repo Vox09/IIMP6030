@@ -1,0 +1,44 @@
+[ 
+  {
+    "name": "tappasaki",
+    "type": "weapon",
+    "rating": 5,
+    "src": "tappasaki.jpg",
+    "percentX": 10
+  },
+  {
+    "name": "beef-pasta",
+    "type": "weapon",
+    "rating": 5,
+    "src": "beef-pasta.jpg",
+    "percentX": 10
+  },
+  {
+    "name": "fried-beef",
+    "type": "weapon",
+    "rating": 4,
+    "src": "fried-beef.jpg",
+    "percentX": 10
+  },
+  {
+    "name": "cold-beef",
+    "type": "weapon",
+    "rating": 4,
+    "src": "cold-beef.jpg",
+    "percentX": 10
+  },
+  {
+    "name": "rice-noodle",
+    "type": "weapon",
+    "rating": 3,
+    "src": "rice-noodle.jpg",
+    "percentX": 10
+  },
+  {
+    "name": "onion-beef",
+    "type": "weapon",
+    "rating": 3,
+    "src": "onion-beef.jpg",
+    "percentX": 10
+  }
+]

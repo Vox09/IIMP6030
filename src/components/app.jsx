@@ -6,7 +6,7 @@ import WishResults from './wish-results'
 import Inventory from './inventory'
 
 import ReignOfSerenity from '../models/reign-of-serenity'
-import EpitomeInvocation from '../models/epitome-invocation'
+import LG7 from '../models/lg7'
 import WanderlustInvocation from '../models/wanderlust-invocation'
 import { version } from '../../package.json';
 
@@ -15,7 +15,7 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.setView = this.setView.bind(this)
-    this.epitomeInvocation = new EpitomeInvocation()
+    this.lg7 = new LG7()
     this.wanderlustInvocation = new WanderlustInvocation()
     this.reignOfSerenity = new ReignOfSerenity()
     this.state = {
@@ -29,7 +29,7 @@ export default class App extends Component {
       selectedCharacterEventWish: 'reign-of-serenity',
       userWishes: {
         'wanderlust-invocation': 0,
-        'epitome-invocation': 0,
+        'lg7': 0,
         'reign-of-serenity': 0,
       }
     }
@@ -116,14 +116,14 @@ export default class App extends Component {
     this.setState({
       userWishes: {
         'wanderlust-invocation': this.wanderlustInvocation.getState().attemptsCount,
-        'epitome-invocation': this.epitomeInvocation.getState().attemptsCount,
+        'lg7': this.lg7.getState().attemptsCount,
         'reign-of-serenity': this.reignOfSerenity.getState().attemptsCount,
       }
     })
   }
   reset(previouslySelectedWish) {
     this.wanderlustInvocation.reset()
-    this.epitomeInvocation.reset()
+    this.lg7.reset()
     this.reignOfSerenity.reset()
     this.setState({
       selectedWish: previouslySelectedWish,
@@ -140,7 +140,7 @@ export default class App extends Component {
       inventory,
       selectedCharacterEventWish,
       wanderlustInvocation: this.wanderlustInvocation.getState(),
-      epitomeInvocation: this.epitomeInvocation.getState(),
+      lg7: this.lg7.getState(),
       reignOfSerenity: this.reignOfSerenity.getState(),
     }
     localStorage.setItem('data', JSON.stringify(data))
@@ -155,7 +155,7 @@ export default class App extends Component {
         inventory
       } = data
       this.wanderlustInvocation.attemptsCount = data.wanderlustInvocationCount || 0
-      this.epitomeInvocation.attemptsCount = data.epitomeInvocationCount || 0
+      this.lg7.attemptsCount = data.lg7 || 0
       this.reignOfSerenity.attemptsCount = data.reignOfSerenity || 0
       this.setState({
         inventory
@@ -167,7 +167,7 @@ export default class App extends Component {
         selectedCharacterEventWish
       } = data
       this.wanderlustInvocation.setState(data.wanderlustInvocation);
-      this.epitomeInvocation.setState(data.epitomeInvocation);
+      this.lg7.setState(data.lg7);
       this.reignOfSerenity.setState(data.reignOfSerenity)
       this.setState({
         inventory,
@@ -226,7 +226,6 @@ export default class App extends Component {
             setView={this.setView}
             is4StarItem={currentWishes.some(item => item.rating === 4)}
             is5StarItem={currentWishes.some(item => item.rating === 5)}
-            isSingleItem={currentWishes.length === 1}
             />
           case 'wish-results':
             return <WishResults
@@ -243,3 +242,4 @@ export default class App extends Component {
         }
   }
 }
+

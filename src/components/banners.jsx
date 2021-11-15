@@ -10,16 +10,16 @@ export default class Banners extends Component {
     super(props)
     const selectedCharacterEventWish = this.props.getFormattedCharacterEventWish('kebabCase')
     this.state = {
-      selectedBanner: [selectedCharacterEventWish],
+      selectedBanner: 'lg7',
       selectedCharacterEventWish,
       banners: {
-        [selectedCharacterEventWish]: 'Character Event Wish',
-        'epitome-invocation': 'Weapon Event Wish',
-        'wanderlust-invocation': 'Standard Wish'
+        [selectedCharacterEventWish]: 'LG1 Food Gacha',
+        'lg7': 'LG7 Food Gacha',
+        'wanderlust-invocation': 'McDonald\'s Food Gacha'
       },
       wishes: {
         [selectedCharacterEventWish]: this.props.getFormattedCharacterEventWish('camelCase', selectedCharacterEventWish),
-        'epitome-invocation': 'epitomeInvocation',
+        'lg7': 'lg7',
         'wanderlust-invocation': 'wanderlustInvocation'
       },
       isSettingsPageVisible: false
@@ -179,15 +179,7 @@ export default class Banners extends Component {
                     wish(this.state.wishes[selectedBanner], true)
                   }}
                   className="wish-button"
-                >Wish</div>
-                <div
-                  className="wish-button"
-                  onClick={() => {
-                    wish(this.state.wishes[selectedBanner])
-                  }}
-                >
-                  Wish x10
-              </div>
+                >Eat What?</div>
               </div>
             </div>
           </div>

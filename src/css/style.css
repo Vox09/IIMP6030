@@ -104,36 +104,28 @@ video {
   cursor: url('../assets/images/ui/cursor.png'), auto;
 }
 
-.banner-button.beginners-wish {
-  background-image: url('../assets/images/ui/noelle.png');
-}
-
-.banner-button.beginners-wish.selected {
-  background-image: url('../assets/images/ui/noelle-selected.png');
-}
-
 .banner-button.reign-of-serenity {
-  background-image: url('../assets/images/ui/shogun.png');
+  background-image: url('../assets/images/ui/lg1.png');
 }
 
 .banner-button.reign-of-serenity.selected {
-  background-image: url('../assets/images/ui/shogun-selected.png');
+  background-image: url('../assets/images/ui/lg1-selected.png');
 }
 
-.banner-button.epitome-invocation {
-  background-image: url('../assets/images/ui/weapon.png');
+.banner-button.lg7 {
+  background-image: url('../assets/images/ui/lg7.png');
 }
 
-.banner-button.epitome-invocation.selected {
-  background-image: url('../assets/images/ui/weapon-selected.png');
+.banner-button.lg7.selected {
+  background-image: url('../assets/images/ui/lg7-selected.png');
 }
 
 .banner-button.wanderlust-invocation {
-  background-image: url('../assets/images/ui/wanderlust.png');
+  background-image: url('../assets/images/ui/out.png');
 }
 
 .banner-button.wanderlust-invocation.selected {
-  background-image: url('../assets/images/ui/wanderlust-selected.png');
+  background-image: url('../assets/images/ui/out-selected.png');
 }
 
 .carousel-container {
