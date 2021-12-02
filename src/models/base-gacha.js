@@ -71,29 +71,11 @@ export default class BaseGacha {
     return threeStarItems[this.generateRandomNumber(threeStarItems.length)]
   }
   getRandom4StarItem() {
-    const isFeatured4StarCharacter = this.flipACoin()
-    if (isFeatured4StarCharacter || this.guaranteedFeatured4Star) {
-      this.guaranteedFeatured4Star = false
-      // return this.getItem(4,true)
-      return this.getItem(4,undefined)
-    } else {
-      this.guaranteedFeatured4Star = true
-      return this.getItem(4,undefined)
-    }
+    return this.getItem(4)
   }
-  getItem(rating,isFeatured) {
+  getItem(rating) {
     const items = this.getDrops(rating)
-    let result
-    if (isFeatured) {
-      result = items.filter(item => item.isFeatured === true)
-    } else if (rating === 4) {
-      const coinFlip = this.flipACoin()
-      const itemType = 'weapon'
-      result = items.filter(item => item.type === itemType && !item.isFeatured)
-    } else {
-      result = items.filter(item => !item.isFeatured)
-    }
-    return result[this.generateRandomNumber(result.length)]
+    return items[this.generateRandomNumber(items.length)]
   }
   getGuaranteed4StarItemOrHigher() {
     // .6% chance of getting 5 star item

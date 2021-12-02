@@ -5,7 +5,7 @@ export default class Settings extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      characterBanner: this.props.getFormattedCharacterEventWish('kebabCase'),
+      banner: this.props.getFormattedEventWish('kebabCase'),
       language: 'English'
     }
     this.banners = {
@@ -21,10 +21,10 @@ export default class Settings extends Component {
     e.preventDefault()
     const {
       closeSettings,
-      updateCharacterEventWish,
+      updateEventWish,
     } = this.props
-    const { characterBanner } = this.state
-    updateCharacterEventWish(characterBanner)
+    const { banner } = this.state
+    updateEventWish(Banner)
     closeSettings()
   }
   renderBannerOptions() {
@@ -45,7 +45,7 @@ export default class Settings extends Component {
   render() {
     const {
       reset,
-      updateCharacterEventWish,
+      updateEventWish,
       closeSettings
     } = this.props
     return (
@@ -67,12 +67,12 @@ export default class Settings extends Component {
                 <Row>
                   <Col xs="12">
                     <FormGroup className="text-left">
-                      <Label for="characterBanner" className="pb-1 pl-1 h5">Choose restaurant</Label>
+                      <Label for="banner" className="pb-1 pl-1 h5">Choose restaurant</Label>
                       <Input
                         type="select"
-                        name="characterBanner"
-                        id="characterBanner"
-                        defaultValue={this.state.characterBanner}
+                        name="banner"
+                        id="banner"
+                        defaultValue={this.state.banner}
                         onChange={this.onChange}
                       >
                         {

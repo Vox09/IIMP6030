@@ -1,13 +1,11 @@
 import React from 'react'
 import { Col, Row } from 'reactstrap';
 import ReactStars from "react-rating-stars-component";
-const characterImages = require.context('../assets/images/characters');
-const weaponImages = require.context('../assets/images/weapons');
+const foodImages = require.context('../assets/images/foods');
 export default function WishItem(props) {
   const { isNewItem } = props
-  const {src, name, rating, type} = props.item
-  const isCharacter = type === 'character'
-  const backgroundImage = `url('${isCharacter ? characterImages('./' + src).default : weaponImages('./' + src).default}')`
+  const {src, name, rating} = props.item
+  const backgroundImage = `url('${foodImages('./' + src).default}')`
   return (
       <Col
       xs="12"
@@ -36,7 +34,6 @@ export default function WishItem(props) {
             className="wish-item-single h-100 w-100"
             style={{
               backgroundImage,
-              // backgroundSize: isCharacter ? 'contain' : 'inherit'
               backgroundSize: 'contain'
             }}
             sm="12"

@@ -1,62 +1,67 @@
 import React, { Component } from 'react';
 import BannerButton from './banner-button';
 import { Carousel } from 'react-responsive-carousel';
-import Modal from './modal';
 import Settings from './settings'
 
 const banners = require.context('../assets/images/banners', true);
 export default class Banners extends Component {
   constructor(props) {
     super(props)
-    const selectedCharacterEventWish = this.props.getFormattedCharacterEventWish('kebabCase')
+    const selectedEventWish = this.props.getFormattedEventWish('kebabCase')
     this.state = {
       selectedBanner: 'lg7',
-      selectedCharacterEventWish,
+      selectedEventWish,
       banners: {
-        [selectedCharacterEventWish]: 'In-Campus Food Gacha',
+        [selectedEventWish]: 'In-Campus Food Gacha',
         'out-campus': 'Out-Campus Food Gacha'
       },
       wishes: {
-        [selectedCharacterEventWish]: this.props.getFormattedCharacterEventWish('camelCase', selectedCharacterEventWish),
+        [selectedEventWish]: this.props.getFormattedEventWish('camelCase', selectedEventWish),
         'out-campus': 'outCampus'
       },
       isSettingsPageVisible: false
     }
-
-  }
+    this.wish
+  } 
+  // handleKeyDown(event){
+  //   if(event.keyCode === 13 && this.wish){
+  //     wish(this.state.wishes[selectedBanner])
+  //   }
+  // }
   componentDidMount() {
     this.setState({ selectedBanner: this.props.selectedBanner })
+    // document.addEventListener("keydown", this.handleKeyDown);
   }
   componentDidUpdate(prevProps) {
-    const newSelectedCharacterEventWish = this.props.getFormattedCharacterEventWish('kebabCase')
+    const newSelectedEventWish = this.props.getFormattedEventWish('kebabCase')
     // If the user selected a new banner
-    const { selectedCharacterEventWish, selectedBanner } = this.state
-    if(newSelectedCharacterEventWish !== selectedCharacterEventWish) {
+    const { selectedEventWish, selectedBanner } = this.state
+    if(newSelectedEventWish !== selectedEventWish) {
       const { banners: oldBanners, wishes: oldWishes } = this.state
       const banners = {}
       const wishes = {}
       for(const b in oldBanners) {
-        if(selectedCharacterEventWish === b) {
-          banners[newSelectedCharacterEventWish] = 'In-Campus Food Gacha'
+        if(selectedEventWish === b) {
+          banners[newSelectedEventWish] = 'In-Campus Food Gacha'
         } else {
           banners[b] = oldBanners[b]
         }
       }
       for(const w in oldWishes) {
-        if(selectedCharacterEventWish === w) {
-          wishes[newSelectedCharacterEventWish] = this.props.getFormattedCharacterEventWish('camelCase', newSelectedCharacterEventWish)
+        if(selectedEventWish === w) {
+          wishes[newSelectedEventWish] = this.props.getFormattedEventWish('camelCase', newSelectedEventWish)
         } else {
           wishes[w] = oldWishes[w]
         }
       }
       let newSelectedBanner = null
-      if(selectedBanner === selectedCharacterEventWish) {
-        newSelectedBanner = newSelectedCharacterEventWish
+      if(selectedBanner === selectedEventWish) {
+        newSelectedBanner = newSelectedEventWish
       } else {
         newSelectedBanner = selectedBanner
       }
       this.setState({
-        selectedCharacterEventWish: newSelectedCharacterEventWish,
+        selectedEventWish: newSelectedEventWish,
         banners,
         wishes,
         selectedBanner: newSelectedBanner
@@ -84,33 +89,28 @@ export default class Banners extends Component {
       isSettingsPageVisible
      } = this.state
     const {
-      wasDisclaimerSeen,
       setView,
       setSelectedWish,
       hideModal,
       reset,
       wish,
-      getFormattedCharacterEventWish,
-      updateCharacterEventWish,
+      getFormattedEventWish,
+      updateEventWish,
       saveData,
       userWishes
     } = this.props
     const bannerKeys = Object.keys(this.state.banners);
     const selectedBannerIndex = bannerKeys.findIndex(b => b === selectedBanner)
+    this.wish = wish
     return (
       <>
-        {
-          wasDisclaimerSeen
-            ? null
-            : <Modal hideModal={hideModal} />
-        }
         {
           isSettingsPageVisible &&
           <Settings
             closeSettings={() => this.toggleSettingsModal(false)}
             reset={() => reset(selectedBanner)}
-            updateCharacterEventWish={updateCharacterEventWish}
-            getFormattedCharacterEventWish={getFormattedCharacterEventWish}
+            updateEventWish={updateEventWish}
+            getFormattedEventWish={getFormattedEventWish}
           />
         }
         <div className="wrapper banners">
@@ -169,12 +169,12 @@ export default class Banners extends Component {
                 >Details</button>
                 <button
                   onClick={() => setView('inventory')}
-                >Inventory</button>
+                >History</button>
               </div>
               <div className="wish-container d-flex justify-content-center">
                 <div
                   onClick={() => {
-                    wish(this.state.wishes[selectedBanner], true)
+                    wish(this.state.wishes[selectedBanner])
                   }}
                   className="wish-button"
                 >Eat What?</div>

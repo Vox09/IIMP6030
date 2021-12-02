@@ -3,7 +3,7 @@ import Banners from './banners'
 import Details from './details'
 import Wish from './wish'
 import WishResults from './wish-results'
-import Inventory from './inventory'
+import Inventory from './history'
 
 import LG1 from '../models/lg1'
 import LG7 from '../models/lg7'
@@ -23,10 +23,9 @@ export default class App extends Component {
       currentDetails: 'lg1',
       selectedWish: 'out-campus',
       inventory: {},
-      wasDisclaimerSeen: false,
       isSettingsPageVisible: false,
       currentWishes: [],
-      selectedCharacterEventWish: 'lg1',
+      selectedEventWish: 'lg1',
       userWishes: {
         'out-campus': 0,
         'lg7': 0,
@@ -34,9 +33,15 @@ export default class App extends Component {
       }
     }
   }
+  // handleKeyDown(event){
+  //   if(event.keyCode === 13 && this.state.view != "banners"){
+  //     this.backToHome()
+  //   }
+  // }
   componentDidMount() {
     this.clearLocalStorageEveryNewBuild();
     this.loadData()
+    // document.addEventListener("keydown", this.handleKeyDown);
   }
   setView(view) {
     this.setState({view})
@@ -46,20 +51,15 @@ export default class App extends Component {
       view: 'banners'
     })
   }
-  hideModal() {
-    this.setState({
-      wasDisclaimerSeen: true
-    })
-  }
   setCurrentDetails(currentDetails) {
     this.setState({currentDetails})
   }
   setSelectedWish(selectedWish) {
     this.setState({selectedWish})
   }
-  wish(selectedWish, isOneWish = false) {
+  wish(selectedWish) {
     this.setState({
-      currentWishes: isOneWish ? [this[selectedWish].rollOnce()] : this[selectedWish].roll(),
+      currentWishes: [this[selectedWish].rollOnce()],
       selectedWish
     }, () => this.setView('wish'))
   }
@@ -81,14 +81,14 @@ export default class App extends Component {
     }
     this.setState({inventory, currentWishes: []}, this.saveData)
   }
-  updateCharacterEventWish(selectedCharacterEventWish) {
+  updateEventWish(selectedEventWish) {
     this.setState({
-      selectedCharacterEventWish
+      selectedEventWish
     }, this.saveData)
   }
-  getFormattedCharacterEventWish(format, selectedCharacterEventWish) {
-    if(!selectedCharacterEventWish) {
-      selectedCharacterEventWish = this.state.selectedCharacterEventWish
+  getFormattedEventWish(format, selectedEventWish) {
+    if(!selectedEventWish) {
+      selectedEventWish = this.state.selectedEventWish
     }
     const options = {
       camelCase() {
@@ -98,7 +98,7 @@ export default class App extends Component {
         return this.formatter(false)
       },
       formatter(isCamel) {
-        const words = selectedCharacterEventWish.split('-')
+        const words = selectedEventWish.split('-')
         for (let i = 0; i < words.length; i++) {
           if(isCamel && !i) continue
           const word = words[i]
@@ -107,7 +107,7 @@ export default class App extends Component {
         return words.join('')
       },
       kebabCase() {
-        return selectedCharacterEventWish
+        return selectedEventWish
       }
     }
     return options[format]()
@@ -133,12 +133,12 @@ export default class App extends Component {
   saveData() {
     const {
       inventory,
-      selectedCharacterEventWish
+      selectedEventWish
     } = this.state
     const data = {
       version: 1,
       inventory,
-      selectedCharacterEventWish,
+      selectedEventWish,
       outCampus: this.outCampus.getState(),
       lg7: this.lg7.getState(),
       lg1: this.lg1.getState(),
@@ -164,14 +164,14 @@ export default class App extends Component {
       // Load version 1 with softPity4 and softPity5
       const {
         inventory,
-        selectedCharacterEventWish
+        selectedEventWish
       } = data
       this.outCampus.setState(data.outCampus);
       this.lg7.setState(data.lg7);
       this.lg1.setState(data.lg1)
       this.setState({
         inventory,
-        selectedCharacterEventWish
+        selectedEventWish
       }, () => {
           this.backToHome()
           this.syncWishCountersWithState()
@@ -195,10 +195,9 @@ export default class App extends Component {
           currentDetails,
           view,
           inventory,
-          wasDisclaimerSeen,
           selectedDetail,
           currentWishes,
-          selectedCharacterEventWish,
+          selectedEventWish,
           userWishes
         } = this.state
         switch(view) {
@@ -208,11 +207,9 @@ export default class App extends Component {
               setCurrentDetails={this.setCurrentDetails.bind(this)}
               setSelectedWish={this.setSelectedWish.bind(this)}
               selectedBanner={currentDetails}
-              getFormattedCharacterEventWish={this.getFormattedCharacterEventWish.bind(this)}
-              updateCharacterEventWish={this.updateCharacterEventWish.bind(this)}
-              wasDisclaimerSeen={wasDisclaimerSeen}
+              getFormattedEventWish={this.getFormattedEventWish.bind(this)}
+              updateEventWish={this.updateEventWish.bind(this)}
               wish={this.wish.bind(this)}
-              hideModal={this.hideModal.bind(this)}
               reset={this.reset.bind(this)}
               userWishes={userWishes}
             />

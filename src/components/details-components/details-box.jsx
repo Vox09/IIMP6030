@@ -1,12 +1,10 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
 
-const characterBackgrounds = require.context('../../assets/images/details/character-backgrounds');
-const weaponBackgrounds = require.context('../../assets/images/details/weapon-backgrounds');
-const characterDetailsThumbs = require.context('../../assets/images/details/characters')
-const weaponDetailsThumbs = require.context('../../assets/images/details/weapons')
+const foodBackgrounds = require.context('../../assets/images/details/food-backgrounds');
+const foodDetailsThumbs = require.context('../../assets/images/details/foods')
 export default function DetailsBox(props) {
-  const {src, title, isWeapon, element} = props
+  const {src, title, element} = props
   return (
     <Col
     xs="12"
@@ -14,12 +12,12 @@ export default function DetailsBox(props) {
     md="4"
     className="details-box my-3"
     style={{
-      backgroundImage: `url('${isWeapon ? weaponBackgrounds('./background.jpg').default : characterBackgrounds(`./background-${element}.png`).default}')`
+      backgroundImage: `url('${foodBackgrounds('./background.jpg').default}')`
     }}
     >
       <Row className="h-100 align-items-center p-4">
         <Col xs="4">
-          <img src={isWeapon ? weaponDetailsThumbs(`./${src}`).default : characterDetailsThumbs(`./${title}.png`).default} className="img-fluid" />
+          <img src={foodDetailsThumbs(`./${src}`).default} className="img-fluid" />
         </Col>
         <Col xs="8">
           <h5 className="text-white text-capitalize">

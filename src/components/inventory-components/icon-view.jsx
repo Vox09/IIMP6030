@@ -1,22 +1,15 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
 import ReactStars from "react-rating-stars-component";
-import weaponBackground from '../../assets/images/details/weapon-backgrounds/background.jpg'
-import characterBackground from '../../assets/images/details/character-backgrounds/background.png'
+import foodBackground from '../../assets/images/details/food-backgrounds/background.jpg'
 
-const characterDetailsThumbs = require.context('../../assets/images/characters/thumbnails')
-const weaponDetailsThumbs = require.context('../../assets/images/weapons')
-const backgroundElements = require.context('../../assets/images/details/character-icons')
+const foodDetailsThumbs = require.context('../../assets/images/foods')
 
 export default function IconView(props) {
   const { name, type, rating, src, quantity } = props.item
-  const backgroundStyle = type === 'weapon'
-    ? {
-      backgroundImage: `url('${weaponBackground}')`
-     }
-    : {
-      background: `url('${backgroundElements(`./${name}-Icon.png`).default}') right / 20% no-repeat, url('${characterBackground}') no-repeat center / contain`
-    }
+  const backgroundStyle = {
+    backgroundImage: `url('${foodBackground}')`
+  }
 
   return(
     <Col
@@ -32,7 +25,7 @@ export default function IconView(props) {
             <Row>
             <Col xs='12' className='d-flex justify-content-center align-items-center'>
               <img
-                src={type === 'weapon' ? weaponDetailsThumbs(`./${src}`).default : characterDetailsThumbs(`./${name.toLowerCase()}.png`).default}
+                src={foodDetailsThumbs(`./${src}`).default}
                 className="img-fluid"
                 style={{
                   maxHeight: '64px'
