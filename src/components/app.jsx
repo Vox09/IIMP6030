@@ -5,9 +5,9 @@ import Wish from './wish'
 import WishResults from './wish-results'
 import Inventory from './history'
 
-import LG1 from '../models/lg1'
-import LG7 from '../models/lg7'
-import OutCampus from '../models/out-campus'
+import K1 from '../models/k1'
+import K2 from '../models/k2'
+import K3 from '../models/k3'
 import { version } from '../../package.json';
 
 
@@ -15,33 +15,41 @@ export default class App extends Component {
   constructor(props) {
     super(props)
     this.setView = this.setView.bind(this)
-    this.lg1 = new LG1()
-    this.lg7 = new LG7()
-    this.outCampus = new OutCampus()
+    this.k1 = new K1()
+    this.k2 = new K2()
+    this.k3 = new K3()
     this.state = {
       view: 'banners',
-      currentDetails: 'lg1',
-      selectedWish: 'out-campus',
+      currentDetails: 'k1',
+      selectedWish: 'k1',
       inventory: {},
       isSettingsPageVisible: false,
       currentWishes: [],
-      selectedEventWish: 'lg1',
       userWishes: {
-        'out-campus': 0,
-        'lg7': 0,
-        'lg1': 0,
+        'k3': 0,
+        'k2': 0,
+        'k1': 0,
       }
     }
   }
-  // handleKeyDown(event){
-  //   if(event.keyCode === 13 && this.state.view != "banners"){
-  //     this.backToHome()
-  //   }
-  // }
+  listener(e){
+    if (e.keyCode === 13){
+      const view = this.state.view
+      if (view != 'banners' && view != 'wish'){
+        this.backToHome()
+      }
+      if (view === 'banners'){
+        this.wish(this.state.selectedWish)
+      }
+    }
+  }
   componentDidMount() {
     this.clearLocalStorageEveryNewBuild();
     this.loadData()
-    // document.addEventListener("keydown", this.handleKeyDown);
+    window.addEventListener("keyup", this.listener.bind(this));
+  }
+  componentWillUnmount() {
+    window.removeEventListener("keyup", this.listener.bind(this));
   }
   setView(view) {
     this.setState({view})
@@ -81,50 +89,19 @@ export default class App extends Component {
     }
     this.setState({inventory, currentWishes: []}, this.saveData)
   }
-  updateEventWish(selectedEventWish) {
-    this.setState({
-      selectedEventWish
-    }, this.saveData)
-  }
-  getFormattedEventWish(format, selectedEventWish) {
-    if(!selectedEventWish) {
-      selectedEventWish = this.state.selectedEventWish
-    }
-    const options = {
-      camelCase() {
-        return this.formatter(true)
-      },
-      pascalCase() {
-        return this.formatter(false)
-      },
-      formatter(isCamel) {
-        const words = selectedEventWish.split('-')
-        for (let i = 0; i < words.length; i++) {
-          if(isCamel && !i) continue
-          const word = words[i]
-          words[i] = word[0].toUpperCase() + word.slice(1)
-        }
-        return words.join('')
-      },
-      kebabCase() {
-        return selectedEventWish
-      }
-    }
-    return options[format]()
-  }
   syncWishCountersWithState() {
     this.setState({
       userWishes: {
-        'out-campus': this.outCampus.getState().attemptsCount,
-        'lg7': this.lg7.getState().attemptsCount,
-        'lg1': this.lg1.getState().attemptsCount,
+        'k3': this.k3.getState().attemptsCount,
+        'k2': this.k2.getState().attemptsCount,
+        'k1': this.k1.getState().attemptsCount,
       }
     })
   }
   reset(previouslySelectedWish) {
-    this.outCampus.reset()
-    this.lg7.reset()
-    this.lg1.reset()
+    this.k3.reset()
+    this.k2.reset()
+    this.k1.reset()
     this.setState({
       selectedWish: previouslySelectedWish,
       inventory: {}
@@ -133,15 +110,13 @@ export default class App extends Component {
   saveData() {
     const {
       inventory,
-      selectedEventWish
     } = this.state
     const data = {
       version: 1,
       inventory,
-      selectedEventWish,
-      outCampus: this.outCampus.getState(),
-      lg7: this.lg7.getState(),
-      lg1: this.lg1.getState(),
+      k3: this.k3.getState(),
+      k2: this.k2.getState(),
+      k1: this.k1.getState(),
     }
     localStorage.setItem('data', JSON.stringify(data))
     this.syncWishCountersWithState()
@@ -154,9 +129,9 @@ export default class App extends Component {
       const {
         inventory
       } = data
-      this.outCampus.attemptsCount = data.outCampus || 0
-      this.lg7.attemptsCount = data.lg7 || 0
-      this.lg1.attemptsCount = data.lg1 || 0
+      this.k3.attemptsCount = data.k3 || 0
+      this.k2.attemptsCount = data.k2 || 0
+      this.k1.attemptsCount = data.k1 || 0
       this.setState({
         inventory
       }, this.backToHome)
@@ -164,14 +139,12 @@ export default class App extends Component {
       // Load version 1 with softPity4 and softPity5
       const {
         inventory,
-        selectedEventWish
       } = data
-      this.outCampus.setState(data.outCampus);
-      this.lg7.setState(data.lg7);
-      this.lg1.setState(data.lg1)
+      this.k3.setState(data.k3);
+      this.k2.setState(data.k2);
+      this.k1.setState(data.k1)
       this.setState({
         inventory,
-        selectedEventWish
       }, () => {
           this.backToHome()
           this.syncWishCountersWithState()
@@ -197,7 +170,6 @@ export default class App extends Component {
           inventory,
           selectedDetail,
           currentWishes,
-          selectedEventWish,
           userWishes
         } = this.state
         switch(view) {
@@ -207,8 +179,6 @@ export default class App extends Component {
               setCurrentDetails={this.setCurrentDetails.bind(this)}
               setSelectedWish={this.setSelectedWish.bind(this)}
               selectedBanner={currentDetails}
-              getFormattedEventWish={this.getFormattedEventWish.bind(this)}
-              updateEventWish={this.updateEventWish.bind(this)}
               wish={this.wish.bind(this)}
               reset={this.reset.bind(this)}
               userWishes={userWishes}

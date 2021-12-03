@@ -91,8 +91,8 @@ video {
 }
 
 .banner-button {
-  height: 90px;
-  width: 180px;
+  height: 180px;
+  width: 240px;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -104,34 +104,34 @@ video {
   cursor: url('../assets/images/ui/cursor.png'), auto;
 }
 
-.banner-button.lg1 {
-  background-image: url('../assets/images/ui/lg1.png');
+.banner-button.k1 {
+  background-image: url('../assets/images/ui/k1.png');
 }
 
-.banner-button.lg1.selected {
-  background-image: url('../assets/images/ui/lg1-selected.png');
+.banner-button.k1.selected {
+  background-image: url('../assets/images/ui/k1-selected.png');
 }
 
-.banner-button.lg7 {
-  background-image: url('../assets/images/ui/lg7.png');
+.banner-button.k2 {
+  background-image: url('../assets/images/ui/k2.png');
 }
 
-.banner-button.lg7.selected {
-  background-image: url('../assets/images/ui/lg7-selected.png');
+.banner-button.k2.selected {
+  background-image: url('../assets/images/ui/k2-selected.png');
 }
 
-.banner-button.out-campus {
-  background-image: url('../assets/images/ui/out.png');
+.banner-button.k3 {
+  background-image: url('../assets/images/ui/k3.png');
 }
 
-.banner-button.out-campus.selected {
-  background-image: url('../assets/images/ui/out-selected.png');
+.banner-button.k3.selected {
+  background-image: url('../assets/images/ui/k3-selected.png');
 }
 
 .carousel-container {
   position: relative;
   height: 65vh;
-  margin: 2rem 15rem;
+  margin: 1rem 15rem;
 }
 
 .carousel.carousel-slider {
@@ -309,7 +309,7 @@ td {
 }
 
 .wish-results {
-  background-image: url('../assets/images/ui/wish-details-background.jpg');
+  background-image: url('../assets/images/ui/wish-details-background.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

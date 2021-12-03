@@ -1,0 +1,30 @@
+[ 
+  {
+    "name": "Teppanyaki Siloin Steak",
+    "rating": 5,
+    "src": "tappasaki.jpg",
+    "percentX": 10,
+    "price": 55
+  },
+  {
+    "name": "Fried Beef",
+    "rating": 4,
+    "src": "fried-beef.jpg",
+    "percentX": 10,
+    "price": 55
+  },
+  {
+    "name": "Cold Beef",
+    "rating": 3,
+    "src": "cold-beef.jpg",
+    "percentX": 10,
+    "price": 35
+  },
+  {
+    "name": "Beef Pasta",
+    "rating": 3,
+    "src": "beef-pasta.jpg",
+    "percentX": 10,
+    "price": 35
+  }
+]

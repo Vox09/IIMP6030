@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Japannese Eri & Deep-fried Chicken Curry Don",
+    "rating": 5,
+    "src": "chicken-curry-don.jpg",
+    "percentX": 10,
+    "price": 45
+  },
+  {
+    "name": "Rice Noodle",
+    "rating": 4,
+    "src": "rice-noodle.jpg",
+    "percentX": 10,
+    "price": 36.5
+  },
+  {
+    "name": "Curry Beef Rice",
+    "rating": 3,
+    "src": "beef-curry.jpg",
+    "price": 36
+  },
+  {
+    "name": "Onion Beef",
+    "rating": 3,
+    "src": "onion-beef.jpg",
+    "price": 35
+  }
+]

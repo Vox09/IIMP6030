@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import LG1Details from './lg1-details'
-import LG7Details from './lg7-details'
+import K1Details from './k1-details'
+import K2Details from './k2-details'
 import Navbar from './details-components/navbar'
-import OutCampusDetails from './out-campus-details'
+import K3Details from './k3-details'
 
 export default function Details(props) {
   const { selectedDetail, backToHome } = props
   const pages = {
-    'lg1': <LG1Details />,
-    'lg7': <LG7Details/>,
-    'out-campus': <OutCampusDetails/>,
+    'k1': <K1Details/>,
+    'k2': <K2Details/>,
+    'k3': <K3Details/>,
   }
   return (
     <>
