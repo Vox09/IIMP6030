@@ -1,17 +1,17 @@
 [
   {
-    "name": "OmniPork fried spring bean",
+    "name": "Veggie BBQ Pork Scambled Eggs",
     "rating": 5,
+    "src": "veggie-BBQ.jpg",
+    "percentX": 10,
+    "price": 45
+  },
+  {
+    "name": "OmniPork fried spring bean",
+    "rating": 4,
     "src": "omnipork.png",
     "percentX": 10,
     "price": 48
-  },
-  {
-    "name": "Veggie BBQ Pork Scambled Eggs",
-    "rating": 4,
-    "src": "veggie-BBQ.png",
-    "percentX": 10,
-    "price": 45
   },
   {
     "name": "Kung Pao Tofu",
